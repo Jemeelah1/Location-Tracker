@@ -1,18 +1,19 @@
-// import React from 'react'
-// import { Outlet } from "react-router-dom";
-
-// // import Footer from "./Components/Footer";
-// // import Navbar from "./Components/Nav";
+import React from 'react'
+import { Outlet } from "react-router-dom";
+import Navbar from "./Components/NavBar";
 
 
-// const Fullscreen = () => {
-//   return (
-//     <>
-//       {/* <Navbar />
-//         <Outlet />
-//       <Footer /> */}
-//     </>
-//   )
-// }
+const Fullscreen = () => {
+  return (
+    <>
+      <div className="flex flex-grow bg-primary">
+      <Navbar />
+      <div className="flex-1">
+        <Outlet />
+      </div>
+    </div>
+    </>
+  )
+}
 
-// export default Fullscreen;
+export default Fullscreen;

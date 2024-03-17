@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import background from "../Assets/background-gradient.avif";
-import Box from "@mui/material/Box";
 import "react-toastify/dist/ReactToastify.css";
 import { validate } from "./Validate";
-import { ToastContainer, toast} from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { notify } from "./Toast";
 import { Link } from "react-router-dom";
 import styles from "./SignUp.module.css";
 // Axios
 import axios from "axios";
+import logo from "../Assets/Find-logo.png";
+import eyeIcon from "../Assets/eye.svg";
+import eyeSlashIcon from "../Assets/eye-slash.svg";
 
 function SignUp() {
   const [data, setData] = useState({
@@ -21,10 +22,20 @@ function SignUp() {
 
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   useEffect(() => {
     setErrors(validate(data, "signUp"));
   }, [data, touched]);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
 
   const changeHandler = (event) => {
     if (event.target.name === "IsAccepted") {
@@ -83,118 +94,116 @@ function SignUp() {
 
   return (
     <>
-      <div
-        style={{
-          backgroundImage: `url(${background})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "100vh",
-        }}
-        className="flex justify-center items-center"
-      >
-        <div className="className" >
-          <Box
-            sx={{
-              width: 700,
-              height: 700,
-              backgroundColor: "white",
-              borderRadius: 20,
-              padding: "20px",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-            }}
-            className="ml-24 mb-20 bg-primary rounded-md"
-          >
-            <div className="pt-24 space-y-12 flex justify-center align-middle">
-              <form
-                className={styles.formLogin}
-                onSubmit={submitHandler}
-                autoComplete="off"
-              >
-                <div>
-                  <div
-                    className={
-                      errors.email && touched.email
-                        ? styles.unCompleted
-                        : !errors.email && touched.email
-                        ? styles.completed
-                        : undefined
-                    }
-                  >
-                    <label>Email</label>
-                    <input
-                      className=""
-                      type="text"
-                      name="email"
-                      value={data.email}
-                      placeholder="E-mail"
-                      onChange={changeHandler}
-                      onFocus={focusHandler}
-                      autoComplete="off"
-                    />
-                    {/* <img src={emailIcon} alt="" /> */}
-                  </div>
-                  {errors.email && touched.email && (
-                    <span className={styles.error}>{errors.email}</span>
-                  )}
+      <div className="flex justify-center items-center text-white bg-primary">
+        <div className="flex flex-col items-center mt-4">
+          <img
+            src={logo}
+            alt="logo"
+            style={{ width: "80px", height: "auto" }}
+          />
+          <h2 className="font-bold text-2xl">
+            Welcome to find. without borders !
+          </h2>
+          <div className="pt-24 space-y-12 flex justify-center align-middle">
+            <form
+              className={styles.formLogin}
+              onSubmit={submitHandler}
+              autoComplete="off"
+            >
+              <div>
+                <div
+                  className={
+                    errors.email && touched.email
+                      ? styles.unCompleted
+                      : !errors.email && touched.email
+                      ? styles.completed
+                      : undefined
+                  }
+                >
+                  <label>Email</label>
+                  <input
+                    className=""
+                    type="text"
+                    name="email"
+                    value={data.email}
+                    placeholder="E-mail"
+                    onChange={changeHandler}
+                    onFocus={focusHandler}
+                    autoComplete="off"
+                  />
+                  {/* <img src={emailIcon} alt="" /> */}
                 </div>
-                <div>
-                  <div
-                    className={
-                      errors.password && touched.password
-                        ? styles.unCompleted
-                        : !errors.password && touched.password
-                        ? styles.completed
-                        : undefined
-                    }
-                  >
-                    <label>Password</label>
-                    <input
-                      type="password"
-                      name="password"
-                      value={data.password}
-                      placeholder="Password"
-                      onChange={changeHandler}
-                      onFocus={focusHandler}
-                      autoComplete="off"
-                    />
-                    {/* <img src={passwordIcon} alt="" /> */}
-                  </div>
-                  {errors.password && touched.password && (
-                    <span className={styles.error}>{errors.password}</span>
-                  )}
+                {errors.email && touched.email && (
+                  <span className={styles.error}>{errors.email}</span>
+                )}
+              </div>
+              <div>
+                <div
+                  className={
+                    errors.password && touched.password
+                      ? styles.unCompleted
+                      : !errors.password && touched.password
+                      ? styles.completed
+                      : undefined
+                  }
+                >
+                  <label>Password</label>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={data.password}
+                    placeholder="Password"
+                    onChange={changeHandler}
+                    onFocus={focusHandler}
+                    autoComplete="off"
+                  />
+                  <img
+                    src={showPassword ? eyeSlashIcon : eyeIcon}
+                    alt="Toggle password visibility"
+                    onClick={togglePasswordVisibility}
+                    className={styles.eyeIcon}
+                  />
                 </div>
-                <div>
-                  <div
-                    className={
-                      errors.confirmPassword && touched.confirmPassword
-                        ? styles.unCompleted
-                        : !errors.confirmPassword && touched.confirmPassword
-                        ? styles.completed
-                        : !errors.confirmPassword && touched.confirmPassword
-                        ? styles.completed
-                        : undefined
-                    }
-                  >
-                    <label>Confirm Password</label>
-                    <input
-                      type="password"
-                      name="confirmPassword"
-                      value={data.confirmPassword}
-                      placeholder="Confirm Password"
-                      onChange={changeHandler}
-                      onFocus={focusHandler}
-                      autoComplete="off"
-                    />
-                    {/* <img src={passwordIcon} alt="" /> */}
-                  </div>
-                  {errors.confirmPassword && touched.confirmPassword && (
-                    <span className={styles.error}>
-                      {errors.confirmPassword}
-                    </span>
-                  )}
+                {errors.password && touched.password && (
+                  <span className={styles.error}>{errors.password}</span>
+                )}
+              </div>
+              <div>
+                <div
+                  className={
+                    errors.confirmPassword && touched.confirmPassword
+                      ? styles.unCompleted
+                      : !errors.confirmPassword && touched.confirmPassword
+                      ? styles.completed
+                      : !errors.confirmPassword && touched.confirmPassword
+                      ? styles.completed
+                      : undefined
+                  }
+                >
+                  <label>Confirm Password</label>
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    name="confirmPassword"
+                    value={data.confirmPassword}
+                    placeholder="Confirm Password"
+                    onChange={changeHandler}
+                    onFocus={focusHandler}
+                    autoComplete="off"
+                  />
+                  <img
+                    src={showConfirmPassword ? eyeSlashIcon : eyeIcon}
+                    alt="Toggle confirm password visibility"
+                    onClick={toggleConfirmPasswordVisibility}
+                    className={styles.eyeIcon}
+                  />
                 </div>
-                <div className={styles.checkboxContainer}>
-                  <div className={styles.terms}>
+                {errors.confirmPassword && touched.confirmPassword && (
+                  <span className={styles.error}>{errors.confirmPassword}</span>
+                )}
+              </div>
+              <div className={styles.checkboxContainer}>
+                <div className={styles.terms}>
+                  <div className={styles.checkboxWrapper}>
                     <input
                       type="checkbox"
                       name="IsEmailAccepted"
@@ -204,63 +213,66 @@ function SignUp() {
                       onFocus={focusHandler}
                     />
                     <label htmlFor="accept">
-                    Sign up for Emails to get updates from us on <br /> products and new offers
-                      services
+                      Sign up for Emails to get updates from us on <br />{" "}
+                      products and new offers services
                     </label>
                   </div>
-                  {errors.IsEmailAccepted && touched.IsEmailAccepted && (
-                    <span className={styles.error}>{errors.IsEmailAccepted}</span>
-                  )}
                 </div>
-                <div className="">
-                  <div className={styles.terms}>
-                    <input
-                      type="checkbox"
-                      name="IsAccepted"
-                      value={data.IsAccepted}
-                      id="accept"
-                      onChange={changeHandler}
-                      onFocus={focusHandler}
-                    />
-                    <label htmlFor="email">
-                      By signing up, you agree to Coincoach privacy<br /> and terms of
-                      services
-                    </label>
+                {errors.IsEmailAccepted && touched.IsEmailAccepted && (
+                  <span className={styles.error}>{errors.IsEmailAccepted}</span>
+                )}
+              </div>
+
+              <div className="">
+                <div className={styles.terms}>
+                  <div className={styles.checkboxWrapper}>
+                  <input
+                    type="checkbox"
+                    name="IsAccepted"
+                    value={data.IsAccepted}
+                    id="accept"
+                    onChange={changeHandler}
+                    onFocus={focusHandler}
+                  />
+                  <label htmlFor="email">
+                    By signing up, you agree to find. privacy
+                    <br /> and terms of services
+                  </label>
                   </div>
-                  {errors.IsAccepted && touched.IsAccepted && (
-                    <span className={styles.error}>{errors.IsAccepted}</span>
-                  )}
                 </div>
-                <div>
-                  <button
-                    style={{
-                      background: "#CE5A29",
-                      color: "white",
-                      textAlign: "center",
-                      marginLeft: "6em",
-                      width: "60%",
-                    }}
-                    type="submit"
-                  >
-                    Sign Up
-                  </button>
-                  <span
-                    style={{
-                      textAlign: "center",
-                      display: "inline-block",
-                      width: "100%",
-                    }}
-                  >
-                    Already have a account?{" "}
-                    <Link to="/signin">
-                      <span className="text-orange">Sign In</span>
-                    </Link>
-                  </span>
-                </div>
-              </form>
-              <ToastContainer />
-            </div>
-          </Box>
+                {errors.IsAccepted && touched.IsAccepted && (
+                  <span className={styles.error}>{errors.IsAccepted}</span>
+                )}
+              </div>
+              <div>
+                <button
+                  style={{
+                    background: "#5E1AE5",
+                    color: "white",
+                    textAlign: "center",
+                    marginLeft: "6em",
+                    width: "60%",
+                  }}
+                  type="submit"
+                >
+                  Sign Up
+                </button>
+                <span
+                  style={{
+                    textAlign: "center",
+                    display: "inline-block",
+                    width: "100%",
+                  }}
+                >
+                  Already have a account?{" "}
+                  <Link to="/signin">
+                    <span className="text-purple">Sign In</span>
+                  </Link>
+                </span>
+              </div>
+            </form>
+            <ToastContainer />
+          </div>
         </div>
       </div>
     </>

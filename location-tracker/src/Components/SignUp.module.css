@@ -1,16 +1,17 @@
 .formLogin {
-    background: #fff;
     box-shadow: var(--box-shadow);
     border: 1px solid var(--secondary-color);
     padding: 25px;
     border-radius: 11px;
     min-width: 500px;
+    margin-top: 0;
+    padding: 0;
   }
   
   .container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 70vh;
   }
   
@@ -29,7 +30,7 @@
   .formLogin input[type="text"],
   .formLogin input[type="email"],
   .formLogin input[type="password"] {
-    background: #E0E0E0;
+    background: #2E2938;
     border-radius: 4px;
     outline: 0;
     border: 1px solid var(--secondary-color);
@@ -60,7 +61,6 @@
   
   .unCompleted::after {
     content: "";
-    /* background-image: url(../img/close.svg); */
     position: absolute;
     width: 15px;
     height: 15px;
@@ -71,7 +71,6 @@
   
   .completed::after {
     content: "";
-    /* background-image: url(../img/check.svg); */
     position: absolute;
     width: 15px;
     height: 15px;
@@ -81,7 +80,7 @@
   }
   
   .formLogin input[type="checkbox"] {
-    background: #E0E0E0;
+    background: #2E2938;
     position: relative;
     margin-right: 10px;
     width: 15px;
@@ -96,11 +95,11 @@
     -o-transition: all 0.2s ease-in-out;
   }
   .formLogin input[type="checkbox"]:checked {
-    background: #E0E0E0;
+    background: #2E2938;
   }
   
   .formLogin input[type="checkbox"]:focus {
-    background: #E0E0E0;
+    background: #2E2938;
     outline: none;
     border: 2px solid var(--main-color-hover);
   }
@@ -127,8 +126,7 @@
   .formLogin > div span.error {
     height: 10px;
     text-align: left;
-    margin-top: 5px;
-    /* width: fit-content; */
+    margin-top: 2px;
     font-size: 0.7rem;
     color: red;
     line-height: 3px;
@@ -193,7 +191,24 @@
     align-items: flex-start;
     gap: 8px;
   }
+
+  .checkboxWrapper {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    gap: 8px;
+  }
   
   .checkboxContainer input {
     margin-right: 8px;
+  }
+  
+  .eyeIcon {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: auto;
+    filter: invert(1);
   }

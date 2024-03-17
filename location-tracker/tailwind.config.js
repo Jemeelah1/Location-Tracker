@@ -8,11 +8,12 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      'primary': '#231867',
+      'primary': '#1F1C26',
       'orange': '#CE5A29',
       'white': '#ffffff',
       'grey': '#C2C2C2',
       'grey2': '#E0E0E0',
+      'purple': '#5E1AE5',
       'yellow': '#F5DEAD',
     },
     screens: {
