@@ -6,6 +6,7 @@ import home from "../Assets/home.svg";
 import location from "../Assets/location.svg";
 import family from "../Assets/Family.svg";
 import logo from "../Assets/Find-logo.png";
+import setting from "../Assets/settings.svg";
 
 function NavBar() {
   const active = ({ isActive }) => {
@@ -39,6 +40,10 @@ function NavBar() {
           <NavLink to="/community" style={active} className="flex text-white hover:text-purple mr-4 mb-4">
            <img src={car} alt="logo" className="mr-4" />
             Share my trip
+          </NavLink>
+          <NavLink to="/settings" style={active} className="flex text-white hover:text-purple mr-4 mb-4">
+            <img src={setting} alt="logo" className="mr-4 item-white pb-5" style={{ filter: 'brightness(0) invert(1)' }} />
+            Settings
           </NavLink>
           <NavLink to="/signin" style={active} className="text-white hover:text-purple mr-4 mb-4">
             Sign-In

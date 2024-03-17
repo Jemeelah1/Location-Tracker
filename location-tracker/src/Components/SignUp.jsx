@@ -131,7 +131,6 @@ function SignUp() {
                     onFocus={focusHandler}
                     autoComplete="off"
                   />
-                  {/* <img src={emailIcon} alt="" /> */}
                 </div>
                 {errors.email && touched.email && (
                   <span className={styles.error}>{errors.email}</span>
