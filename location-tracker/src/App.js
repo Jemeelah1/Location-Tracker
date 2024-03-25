@@ -11,6 +11,7 @@ import SettingScreen from "./SettingScreen";
 import Contact from "./Components/Contact";
 import About from "./Components/About";
 import Account from "./Components/Account";
+import Signout from "./Components/Signout";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/about' element={<About />} />
           <Route path='/account' element={<Account />} />
+          <Route path='/signout' element={<Signout/>} />
         </Route>
         <Route path='/signin' element={<SignIn />} />
         <Route path='/signup' element={<SignUp />} />

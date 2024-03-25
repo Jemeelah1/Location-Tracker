@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../Assets/Find-logo.png";
 import profile from "../Assets/profile.svg";
-import padlock from "../Assets/padlock.svg";
+// import padlock from "../Assets/padlock.svg";
 import help from "../Assets/help.svg";
 import about from "../Assets/about.svg";
 import home from "../Assets/home.svg";
@@ -22,14 +22,18 @@ function Settingbar() {
           <NavLink to="/" style={active} className="flex mb-4">
             <img src={logo} alt="logo" className="mr-4" style={{ width: "80px", height: "auto" }} />
           </NavLink>
+          <NavLink to="/" style={active} className=" flex text-white hover:text-purple mr-4 mb-4">
+            <img src={home} alt="logo" className="mr-4" />
+            Home
+          </NavLink>
           <NavLink to="/account" style={active} className=" flex text-white hover:text-purple mr-4 mb-4">
             <img src={profile} alt="logo" className="mr-4" style={{ filter: 'brightness(0) invert(1)' }} />
             Account
           </NavLink>
-          <NavLink to="/password" style={active} className="flex text-white hover:text-purple mr-4 mb-4">
+          {/* <NavLink to="/password" style={active} className="flex text-white hover:text-purple mr-4 mb-4">
            <img src={padlock} alt="logo" className="mr-4" style={{ filter: 'brightness(0) invert(1)' }} />
             Change Password
-          </NavLink>
+          </NavLink> */}
           <NavLink to="/about" style={active} className=" flex text-white hover:text-purple mr-4 mb-4">
            <img src={about} alt="logo" className="mr-4" style={{ filter: 'brightness(0) invert(1)' }} />
            About us
@@ -38,11 +42,7 @@ function Settingbar() {
            <img src={help} alt="logo" className="mr-4" style={{ filter: 'brightness(0) invert(1)' }} />
            Contact us
           </NavLink>
-          <NavLink to="/" style={active} className=" flex text-white hover:text-purple mr-4 mb-4 mt-64">
-            <img src={home} alt="logo" className="mr-4" />
-            Home
-          </NavLink>
-          <NavLink to="/signin" style={active} className="flex text-white hover:text-purple mr-4 mb-4">
+          <NavLink to="/signout" style={active} className="flex text-white hover:text-purple mr-4 mb-4">
             <img src={signout} alt="logo" className="mr-4" style={{ filter: 'brightness(0) invert(1)' }} />
             SignOut
           </NavLink>
